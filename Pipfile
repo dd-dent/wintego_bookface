@@ -6,11 +6,14 @@ verify_ssl = true
 [dev-packages]
 autopep8 = "*"
 rope = "*"
+ptpython = "*"
+wheel = "*"
 
 [packages]
 click = "*"
 trio = "*"
 asks = "*"
+protobuf = "*"
 
 [requires]
 python_version = "3.7"
