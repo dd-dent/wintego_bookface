@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package bookface;
+
+message Profile {
+  required string id = 1;
+  required string first = 2;
+  required string last = 3;
+  required int32 age = 4;
+  required int32 color = 5;
+}
