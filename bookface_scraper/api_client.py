@@ -1,8 +1,9 @@
-import click
-from config import BASE_URL
-import trio
 import asks
-from pprint import pprint
+import click
+import trio
+
+from config import BASE_URL
+
 asks.init('trio')
 
 
@@ -40,7 +41,7 @@ class Client:
         token = response.cookies[0].value
         click.secho(f'login successful. token: {token}', fg='green')
 
-    async def get_user(self, user_id):
+    async def get_user(self, user_id: str) -> str:
         """
         Get encoded user profile string.
         """
@@ -53,6 +54,24 @@ class Client:
             user_profile = response.content
             done = True
         return user_profile
+
+    async def get_followers(self, user_id: str, skip=0) -> list:
+        """
+        Get list of followers for user.
+        """
+        done = False
+        followers = set()
+        while not done:
+            response = await self._session.get(path=f'user/{user_id}/followers',
+                                               params={'skip': skip})
+            if response.status_code == 500:
+                continue
+            res_json = response.json()
+            followers |= {f['id'] for f in res_json['followers']}
+            if res_json['more']:
+                followers |=  await self.get_followers(user_id, skip + 10)
+            done = True
+        return followers
 
 
 async def get_client(credentials: dict):
