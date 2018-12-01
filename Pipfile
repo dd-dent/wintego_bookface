@@ -14,6 +14,8 @@ click = "*"
 trio = "*"
 asks = "*"
 protobuf = "*"
+tqdm = "*"
+oyaml = "*"
 
 [requires]
 python_version = "3.7"

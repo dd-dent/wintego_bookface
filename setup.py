@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from setuptools import setup, find_packages, findall
+from setuptools import setup, find_packages
 
 setup(
     name='bookface-scraper',
@@ -11,7 +11,9 @@ setup(
         'click',
         'trio',
         'asks',
-        'protobuf'],
+        'protobuf',
+        'oyaml',
+        'tqdm'],
     setup_requires=['wheel'],
     entry_points='''
         [console_scripts]

@@ -1,5 +1,5 @@
 import base64
-from proto.profile_pb2 import Profile
+from bookface_scraper.proto.profile_pb2 import Profile
 
 
 class User:
@@ -28,16 +28,8 @@ class User:
                 'last_name': self.last_name,
                 'age': self.age,
                 'favorite_color': self.favorite_color,
-                'following': self.following,
-                'followers': self.followers}
-
-    def __eq__(self, other):
-        if isinstance(other, User):
-            return self.user_id == other.user_id
-        return NotImplemented
-        
-    def __hash__(self):
-        return hash(self.user_id)
+                'following': list(self.following),
+                'followers': list(self.followers)}
 
 
 def _decode_colors(encoded_colors: int) -> dict:
