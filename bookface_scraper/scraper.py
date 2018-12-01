@@ -16,7 +16,7 @@ class Scraper:
     async def scrape(self, limit) -> dict:
         # this block won't exit as long as any spawned tasks are running,
         async with trio.open_nursery() as nursery:
-            with tqdm(unit='users', unit_scale=True, total=988, smoothing=0) as pbar:
+            with tqdm(unit=' users', unit_scale=True, smoothing=0) as pbar:
                 # if running with limit, run up to limit:
                 if limit:
                     for _ in range(limit):
