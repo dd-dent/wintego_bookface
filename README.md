@@ -1,6 +1,6 @@
 # bookface-scraper
 
-Asnc BookFace API scraper
+Async BookFace API scraper
 
 ## Requirements
 
